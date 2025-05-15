@@ -1,13 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, SafeAreaView, FlatList,TouchableOpacity } from 'react-native';
 import { useState } from 'react';
+import GoalItem from './components/goal-item';
+import { neoBrutalismColors } from './theme';
+import GoalInput from './components/goal-input';
 
-const neoBrutalismColors = {
-    background: '#ffffff', // White background
-    text: '#000000', // Black text
-    border: '#000000', // Black borders
-    accent: '#008000', // A stark, vibrant accent color (magenta)
-};
 
 export default function App() {
 
@@ -42,35 +39,26 @@ export default function App() {
 	return (
         <SafeAreaView style={styles.container}>
             <StatusBar style="dark" />
-            <View style={styles.inputContainer}>
-                <TextInput
-                    style={styles.input} 
-                    placeholder='ENTER OBJECTIVE' 
-                    placeholderTextColor={neoBrutalismColors.text + '80'} 
-                    onChangeText={handleInputChange}
-                    value={goal}
-                />
-                <TouchableOpacity style={styles.addButton} onPress={handleAddGoal} activeOpacity={0.8}>
-                    <Text style={styles.buttonText}>ADD</Text> 
-                </TouchableOpacity>
-            </View>
+			<GoalInput
+				handleInputChange={handleInputChange}
+				handleAddGoal={handleAddGoal}
+				goal={goal}
+			/>
             <View style={styles.goalsList}>
                 {goals.length === 0 && <Text style={styles.noGoalsText}>NO OBJECTIVES ADDED YET.</Text>}
                 <FlatList
                     data={goals}
                     renderItem={({ item }) => {
                         return (
-                            <TouchableOpacity
-                                style={styles.goalItem} 
-                                onPress={() => handleDeleteGoal(item.key)}
-                                activeOpacity={0.8}
-                            >
-                                <Text style={styles.goalText}>{item.text}</Text>
-                            </TouchableOpacity>
-                        )
+							<GoalItem
+								text={item.text}
+								key={item.key}
+								handleDeleteGoal={()=>handleDeleteGoal(item.key)}
+							/>
+						)
                     }}
                     keyExtractor={(item) => item.key}
-                    contentContainerStyle={styles.goalsListContent} // Style the content container
+                    contentContainerStyle={styles.goalsListContent} 
                 />
             </View>
         </SafeAreaView>
@@ -83,52 +71,6 @@ const styles = StyleSheet.create({
         backgroundColor: neoBrutalismColors.background, // White background
         paddingTop: 60, // More padding at the top
         paddingHorizontal: 20, // Increased horizontal padding
-    },
-    inputContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 20,
-        borderWidth: 3, // Thick border
-        borderColor: neoBrutalismColors.border,
-        padding: 15, // Increased padding
-        backgroundColor: neoBrutalismColors.background, // Match background
-        // Add the signature offset shadow effect
-        shadowColor: neoBrutalismColors.border,
-        shadowOffset: { width: 6, height: 6 }, // Hard offset shadow
-        shadowOpacity: 1, // Fully opaque shadow
-        shadowRadius: 0, // Sharp edges for shadow
-        elevation: 8, // Elevation for Android shadow
-    },
-    input: {
-        flex: 1,
-        marginRight: 15, // Increased margin
-        borderWidth: 3, // Thick border for input
-        borderColor: neoBrutalismColors.border,
-        padding: 15, // Increased padding
-        color: neoBrutalismColors.text, // Black text
-        fontSize: 18, // Larger font size
-        fontWeight: 'bold', // Bold font
-        backgroundColor: neoBrutalismColors.background, // Input background
-    },
-    addButton: {
-        backgroundColor: neoBrutalismColors.accent, // Accent color button
-        paddingVertical: 15,
-        paddingHorizontal: 20,
-        borderRadius: 0, // Sharp corners
-        borderWidth: 3,
-        borderColor: neoBrutalismColors.border,
-        // Add the signature offset shadow effect
-        shadowColor: neoBrutalismColors.border,
-        shadowOffset: { width: 6, height: 6 },
-        shadowOpacity: 1,
-        shadowRadius: 0,
-        elevation: 8,
-    },
-    buttonText: {
-        color: neoBrutalismColors.border, // Black text on accent button
-        fontSize: 18,
-        fontWeight: 'bold', // Bold text
     },
     goalsList: {
         flex: 1,
@@ -145,28 +87,4 @@ const styles = StyleSheet.create({
         color: neoBrutalismColors.text + 'cc', // Slightly transparent black
         fontWeight: 'bold', // Bold font
     },
-    goalItem: {
-        backgroundColor: neoBrutalismColors.background, // White background for items
-        padding: 15, // Increased padding
-        marginVertical: 10, // Increased vertical margin
-        borderRadius: 0, // Sharp corners
-        borderWidth: 3, // Thick border
-        borderColor: neoBrutalismColors.border,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        // Add the signature offset shadow effect
-        shadowColor: neoBrutalismColors.border,
-        shadowOffset: { width: 6, height: 6 },
-        shadowOpacity: 1,
-        shadowRadius: 0,
-        elevation: 8,
-    },
-    goalText: {
-        color: neoBrutalismColors.text, // Black text
-        fontSize: 18, // Larger font
-        // fontWeight: 'bold', // Can be bold or regular depending on preference
-        flexShrink: 1, // Allow text to wrap
-        marginRight: 10,
-    },
-});``
+});
