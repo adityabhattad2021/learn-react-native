@@ -12,7 +12,6 @@ export default function GoalItem({ text,handleDeleteGoal }) {
             onPress={handleDeleteGoal}
             android_ripple={{color:neoBrutalismColors.accent,foreground:true}}
             style={({pressed})=>[styles.goalItem,pressed && styles.pressedItem]}
-
         >
             <Text style={styles.goalText}>{text}</Text>
         </Pressable>
