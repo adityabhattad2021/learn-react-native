@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, SafeAreaView, FlatList,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 import { useState } from 'react';
 import GoalItem from './components/goal-item';
 import { neoBrutalismColors } from './theme';
@@ -52,7 +52,6 @@ export default function App() {
                         return (
 							<GoalItem
 								text={item.text}
-								key={item.key}
 								handleDeleteGoal={()=>handleDeleteGoal(item.key)}
 							/>
 						)

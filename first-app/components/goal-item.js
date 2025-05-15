@@ -1,20 +1,21 @@
 import {
     StyleSheet,
-    TouchableOpacity,
+    Pressable,
     Text
 } from "react-native"
 import { neoBrutalismColors } from "../theme"
 
 
-export default function GoalItem({ text,key,handleDeleteGoal }) {
+export default function GoalItem({ text,handleDeleteGoal }) {
     return (
-        <TouchableOpacity
-            style={styles.goalItem}
+        <Pressable
             onPress={handleDeleteGoal}
-            activeOpacity={0.8}
+            android_ripple={{color:neoBrutalismColors.accent,foreground:true}}
+            style={({pressed})=>[styles.goalItem,pressed && styles.pressedItem]}
+
         >
             <Text style={styles.goalText}>{text}</Text>
-        </TouchableOpacity>
+        </Pressable>
     )
 }
 
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 0,
         elevation: 8,
+        overflow:'hidden'
     },
     goalText: {
         color: neoBrutalismColors.text, // Black text
@@ -44,4 +46,7 @@ const styles = StyleSheet.create({
         flexShrink: 1, // Allow text to wrap
         marginRight: 10,
     },
+    pressedItem:{
+        background:neoBrutalismColors.accent
+    }
 })
