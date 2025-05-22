@@ -38,8 +38,8 @@ export default function StartGameScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 32,
-        marginVertical:350,
+        padding: 12,
+        marginVertical:370,
         marginHorizontal:50,
         justifyContent: 'space-evenly',
         alignItems: 'center',
@@ -51,10 +51,11 @@ const styles = StyleSheet.create({
         borderColor:"#f5dd0e",
         borderWidth:3,
         borderRadius:8,
-        width:80,
-        height:50,
+        width:120,
         color:"#f5dd0e",
-        textAlign:'center'
+        fontSize:24,
+        textAlign:'center',
+        paddingVertical:2,
     },
     buttonContainer:{
         display:'flex',

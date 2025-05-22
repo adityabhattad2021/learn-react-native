@@ -30,11 +30,11 @@ const styles = StyleSheet.create({
     },
     innerContainer:{
         backgroundColor:'#5d157a',
-        paddingVertical:8,
-        paddingHorizontal:24,
+        paddingVertical:12,
+        paddingHorizontal:40,
         elevation:2,
     },  
     textContainer:{
-        color:'#fff'
+        color:'#fff',
     }
 })
