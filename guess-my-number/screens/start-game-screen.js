@@ -7,6 +7,15 @@ import PrimaryButton from "../components/primary-button";
 
 
 export default function StartGameScreen() {
+
+    function onPressConfirm(){
+        console.log("Confirm Pressed");
+    }
+
+    function onPressReset(){
+        console.log("Reset Pressed");
+    }
+
     return (
         <View style={styles.container}>
             <TextInput
@@ -15,10 +24,10 @@ export default function StartGameScreen() {
                 keyboardType="numeric"
             />
             <View style={styles.buttonContainer}>
-                <PrimaryButton>
+                <PrimaryButton onPress={onPressConfirm}>
                     Confim
                 </PrimaryButton>
-                <PrimaryButton>
+                <PrimaryButton onPress={onPressReset}>
                     Reset
                 </PrimaryButton>
             </View>
@@ -34,7 +43,7 @@ const styles = StyleSheet.create({
         marginHorizontal:50,
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        backgroundColor:'#58085b',
+        backgroundColor:'#8520ae',
         borderRadius:8,
         elevation:12,
     },
